@@ -24,10 +24,8 @@ namespace Dashboard.Models
             optionsBuilder.UseNpgsql(AppConstants.Db.ConnectionString);
         }
 
-
-        public DbSet<Log> Logs { get; set; }
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<Story> Stories { get; set; }
         public DbSet<Keyword> Keywords { get; set; }
     }
 }

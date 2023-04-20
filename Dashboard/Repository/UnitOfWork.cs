@@ -5,14 +5,16 @@ namespace Dashboard.Repository
     public class UnitOfWork
     {
         private Context c;
-        public EventRepository eventRepository { get; private set; }
+        public StoryRepository storyRepository { get; private set; }
+        public AccountRepository accountRepository { get; private set; }
         // other repositories might needed to be created here..
 
 
         public UnitOfWork(Context c, CurrentUser currentUser)
         {
             this.c = c;
-            eventRepository = new EventRepository(this.c, currentUser);
+            storyRepository = new StoryRepository(this.c, currentUser);
+            accountRepository = new AccountRepository(this.c, currentUser);
         }
 
 

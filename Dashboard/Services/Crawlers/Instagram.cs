@@ -97,7 +97,7 @@ namespace Dashboard.Services.Crawlers
                 if (!s3.GetBase64FromUrl(imgUrl, out imgBase64Str, out double aspectRatio)) continue;
 
                 string fileName = s3.GetUniqueName("CoverPhoto") + ".jpg";
-                string S3Path = S3.Folder_Dir_EventImage + fileName;
+                string S3Path = S3.Folder_Dir_StoryImage + fileName;
                 string LocalPath = AppContext.BaseDirectory + @"/" + S3Path.Replace("/", @"\");
 
                 s3.SaveBase64File(LocalPath, imgBase64Str);
@@ -120,7 +120,7 @@ namespace Dashboard.Services.Crawlers
                     continue;
                 }
 
-                var keywords = selenium.u.eventRepository.GetKeyWords();
+                var keywords = selenium.u.storyRepository.GetKeyWords();
                 var matches = keywords.Where(keyword => ocrResult.ImageText.ToLower().Contains(keyword.Word));
                 var macthesList = string.Join(", ", matches.Select(x => x).ToList());
 
@@ -135,7 +135,7 @@ namespace Dashboard.Services.Crawlers
                 Print("\n\n Matches:" + macthesList + "\n");
 
                 // Check if already exists
-                if (selenium.u.eventRepository.Any(x => x.Title == account + " " + macthesList))
+                if (selenium.u.storyRepository.Any(x => x.Title == account + " " + macthesList))
                 {
                     Console.Write(" Already exists.");
                     ClickNext();
@@ -162,7 +162,7 @@ namespace Dashboard.Services.Crawlers
                     }
                 }
 
-                Event e = new Event()
+                Story e = new Story()
                 {
                     Title = LimitLength(ocrResult.ImageText, 80),
                     Description = ocrResult.ImageText,
@@ -172,7 +172,7 @@ namespace Dashboard.Services.Crawlers
                     InstagramUrl = instagramUrl,
                 };
 
-                selenium.u.eventRepository.Add(e);
+                selenium.u.storyRepository.Add(e);
                 selenium.u.Complete();
                 Print("Event Crawled !");
                 ClickNext();

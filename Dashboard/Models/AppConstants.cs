@@ -37,7 +37,7 @@ namespace Dashboard.Models
         public static class AppInfo
         {
             public static Version VersionInfo { get; } = new Version(1,0);
-            public static string Name { get; } = "Selenium Crawler App Demo";
+            public static string Name { get; } = "Selenium Crawler App";
             public static string Description { get; } = "This is a demo app to show how to use selenium driver to crawl web sites";
             public static string Author { get; } = "Ali CAKIL";
             public static bool IsDevelopment { get; set; } = true;

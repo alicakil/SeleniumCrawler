@@ -11,7 +11,7 @@ namespace Dashboard.Models
 
     public class BaseCreated : BaseEntity
     {
-        public DateTime? CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [ForeignKey("Acount")]
         public int CreatedById { get; set; }

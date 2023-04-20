@@ -1,1 +1,46 @@
-﻿<h1> Selenium Crawler Demo App </h1>
+﻿@using Dashboard.Models;
+@using core.Dtos;
+@model ListViewDto;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<h1> Selenium Crawler Demo App </h1>
+
+
+<h4> 
+    <a href="../hangfire"> Hangfire Dashboard </a>     
+</h4>
+
+
+
+
+<!-- List View  -->
+<div class="container">
+    <div class="row">
+
+      
+    @if (Model.PageData.Count == 0)
+        @Html.Raw("<div class='col-12'><h2 style='text-align:center;margin-top:70px;'>No Event Found</h2></div>")
+
+
+
+            @foreach (var x in Model.PageData)
+        {
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 parent-cart" onclick="window.open('/Event/EventDetails/@x.Id')">
+
+                <div class="child-cart @x.isRegistered" style=" background-image: linear-gradient(transparent, transparent, black), url('@x.CoverPhotoURL');">
+                    <div class="cart-date">
+                        @Html.Raw(@x.CreatedAt)
+                    </div>
+                    <p class="cart-info1"> <i class="bi bi-arrow-right-short"></i>  @x.Title </p>
+                    <p class="cart-info2"> <i class="bi bi-geo-alt"></i> @x.LocationInfo </p>
+
+                </div>
+            </div>
+        }
+      
+
+    </div>
+</div>
+

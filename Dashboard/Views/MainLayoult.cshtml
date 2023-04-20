@@ -1,0 +1,107 @@
+@using Dashboard.Models;
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title> Selenium Crawer </title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<meta name="keywords" content="Selenium Crawer Demo">
+	<meta name="author" content=="Ali CAKIL">
+	<meta name="description" content="Selenium Crawer Demo Application">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css'>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+
+	<style>
+
+        @@import url('https://fonts.cdnfonts.com/css/ds-digital');
+
+        @@font-face {
+            font-family: myFirstFont;
+            src: url(sansation_light.woff);
+        }
+
+        * {
+            font-family: 'DS-Digital', sans-serif;
+            font-weight: 300;
+            transition: all .1s ease;
+        }
+
+		html, body {
+			height: 100%;
+			background-color: black;
+			color: lightgreen;
+			text-align: center;
+		}
+
+
+
+        .me {
+            min-height: 360px;
+            font-size: large;
+            background-position: center;
+            background-size: 90%;
+            transition: background-size 0.5s;
+            background-image: linear-gradient(to right, transparent, transparent, black), linear-gradient(to left, transparent, transparent, black), linear-gradient(to bottom, transparent, transparent, black), url('../files/me.jpg');
+            background-repeat: no-repeat;
+        }
+
+        .my-name { font-size: 90px; }
+        .my-title { font-size: 52px; }
+        .my-motto {  font-family: "Times New Roman", Times, serif;  font-style: italic; color:gray;}
+
+		.my-input 
+		{
+			font-size:x-large !important;
+		}
+		
+        @@media (max-width: 800px) {
+
+
+           .me { min-height: 200px !important; }
+		   .my-name { font-size: 48px; }
+		   .my-title { font-size: 31px; }
+        }
+
+
+	</style>
+</head>
+
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="me">
+
+					</div>
+			</div>
+			<div class="col-12">
+				<h1 class="my-name">  @AppConstants.AppInfo.Name  </h1>
+			</div>
+			<div class="col-12 mt-3" style="text-align:center;">
+
+				@RenderBody()
+
+			</div>
+		</div>
+    </div>
+
+
+
+<script>
+
+
+</script>
+
+
+</body>
+</html>
+
+

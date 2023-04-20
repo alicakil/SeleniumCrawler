@@ -1,0 +1,39 @@
+﻿@using Dashboard.Models;
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Account
+@{
+    Layout = "~/Views/MainLayoult.cshtml";
+}
+
+<form method='post' action='/home/LoginCheck' autocomplete='off'>
+    <div class='container-fluid'>
+        <div class='row p-5 p-md-0'>
+
+
+            <div class='col-12 col-sm-6 offset-sm-3 col-lg-4 offset-lg-4  col-xl-2 offset-xl-5  p-5 p-md-3 pt-3 pb-5 shadowbox'>
+
+                <input asp-for='Email' id="email" placeholder="email" class='form-control' type='text' class='my-input' />
+
+                <br />
+                <input asp-for='Password' class='form-control' placeholder="password" type='password' class='my-input' />
+                <br />
+                <button type='submit' class="btn btn-outline-success btn-lg"> <i class="bi bi-emoji-sunglasses-fill"></i> login </button>
+                <br /><br />
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+
+    $(document).ready(function () {
+        document.getElementById("email").focus();
+    });
+
+</script>
+

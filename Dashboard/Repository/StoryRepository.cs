@@ -5,17 +5,17 @@ using System.Linq.Expressions;
 
 namespace Dashboard.Repository
 {
-    public class EventRepository : Repository<Event>
+    public class StoryRepository : Repository<Story>
     {
         public readonly Context c;
-        public EventRepository(Context context, CurrentUser currentUser) : base(context, currentUser)
+        public StoryRepository(Context context, CurrentUser currentUser) : base(context, currentUser)
         {
             c = context;
         }
 
-        public Event GetById(int id, params string[] includings)
+        public Story GetById(int id, params string[] includings)
         {            
-            var query = c.Events.AsQueryable();
+            var query = c.Stories.AsQueryable();
 
             foreach (var including in includings)
             {

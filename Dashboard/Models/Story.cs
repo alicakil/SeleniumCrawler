@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dashboard.Models
 {
-    public class Event : BaseModified
+    public class Story : BaseModified
     {
         [StringLength(180)]
         [Required]

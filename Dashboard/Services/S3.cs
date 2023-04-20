@@ -12,7 +12,7 @@ namespace Dashboard.Services
         AmazonS3Client client;
 
         public static string Folder_AccountImageProfile = "account/Image/profile/";
-        public static string Folder_Dir_EventImage = "event/image/";
+        public static string Folder_Dir_StoryImage = "story/image/";
 
 
         string Root = "";
