@@ -1,0 +1,67 @@
+@import url('https://fonts.cdnfonts.com/css/ds-digital');
+
+@font-face {
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+}
+
+* {
+    font-family: 'DS-Digital', sans-serif;
+    font-weight: 300;
+    transition: all .1s ease;
+}
+
+html, body {
+    height: 100%;
+    background-color: black;
+    color: lightgreen;
+    text-align: center;
+}
+
+.me {
+    min-height: 360px;
+    font-size: large;
+    background-position: center;
+    background-size: 90%;
+    transition: background-size 0.5s;
+    background-image: linear-gradient(to right, transparent, transparent, black), linear-gradient(to left, transparent, transparent, black), linear-gradient(to bottom, transparent, transparent, black), url('../files/me.jpg');
+    background-repeat: no-repeat;
+}
+
+.my-name {
+    font-size: 90px;
+}
+
+.my-title {
+    font-size: 52px;
+}
+
+.my-motto {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    color: gray;
+}
+
+.my-input {
+    font-size: x-large !important;
+}
+
+@@media (max-width: 800px) {
+
+
+    .me {
+        min-height: 200px !important;
+    }
+
+    .my-name {
+        font-size: 48px;
+    }
+
+    .my-title {
+        font-size: 31px;
+    }
+}
+
+a {
+    color: white;
+}

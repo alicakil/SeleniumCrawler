@@ -1,4 +1,7 @@
-﻿using Hangfire;
+﻿using Dashboard.Models;
+using Dashboard.Repository;
+using Dashboard.Services.Crawlers;
+using Hangfire;
 using Hangfire.Annotations;
 using Hangfire.Dashboard;
 using Hangfire.Server;
@@ -9,39 +12,22 @@ namespace Dashboard.Services
     {
         [AutomaticRetry(Attempts = 1)]
         [JobDisplayName("My Job")]
-        public void ExecuteJob(PerformContext context)
+        public void ExecuteJob()
         {
-            try
-            {
-                // Initialize ---
-                //Console.Write("Execute Job calisiyor");
-                //Context c = new Context();
-                //CurrentUser currentUser = new CurrentUser();
+			// Initialize ---
+			Console.Write("Job Executing...");
+			Context c = new Context();
+			CurrentUser currentUser = new CurrentUser();
 
-                //currentUser.Id = 4;
-                //currentUser.Name = "Crawler";
-                //UnitOfWork u = new UnitOfWork(c, currentUser);
-                //// --------------
+			currentUser.Id = 4;
+			currentUser.Name = "Crawler";
+			UnitOfWork u = new UnitOfWork(c, currentUser);
+			// --------------
 
-                //Console.Write("Instagram Crawler Initialize");
-                //Instagram i = new Instagram(u);
-                //i.CrawlWebSite();
-
-
-                JobStorage
-                .Current
-                .GetConnection()
-                .SetJobParameter(context.BackgroundJob.Id, "resultMessage", "Instagram Crawl Completed");
-            }
-            catch (Exception ex)
-            {
-                JobStorage
-               .Current
-               .GetConnection()
-               .SetJobParameter(context.BackgroundJob.Id, "resultMessage", ex.Message);
-            }
-
-        }
+			Console.Write("Instagram Crawler Initialize");
+			Instagram i = new Instagram();
+			i.CrawlWebSite();
+		}
     }
 
     public class HangfireAuthenticationFilter : IDashboardAuthorizationFilter
@@ -50,15 +36,8 @@ namespace Dashboard.Services
         {
             var httpContent = context.GetHttpContext();
 
-            if (!httpContent.User.Identity.IsAuthenticated)
-                return false;
+            return httpContent.User.Identity.IsAuthenticated;
 
-            var Role = httpContent.User.FindFirst("Role")?.Value;
-
-            if (Role == "Admin")
-                return httpContent.User.Identity.IsAuthenticated;
-
-            return false;
-        }
+		}
     }
 }

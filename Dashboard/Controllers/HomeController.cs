@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
+using System.Net.Http;
 using System.Security.Claims;
 
 namespace Dashboard.Controllers
@@ -17,13 +18,16 @@ namespace Dashboard.Controllers
 
         public HomeController(UserService userService)
         {
-            u = new UnitOfWork(new Context(), userService.GetCurrentUser());
-        }
+            u = new UnitOfWork(new Context(), userService.GetCurrentUser()); // skipping DI
+		}
   
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            if (HttpContext.User.Identity.IsAuthenticated)
+				return Redirect("/home/Index");
+
+			return View();
         }
 
         [AllowAnonymous]
@@ -52,8 +56,6 @@ namespace Dashboard.Controllers
             return Redirect("/home/Index");
         }
 
-
-        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             //mRemove Authentication

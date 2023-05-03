@@ -9,6 +9,9 @@ namespace Dashboard.Helpers
 {
     public static class DbInitialize
     {
+        /// <summary>
+        /// Create db for first run and put some dummy data for beginning
+        /// </summary>
         public static void InitializeDb() 
         {
             Context c = new Context();

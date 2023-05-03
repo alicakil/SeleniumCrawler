@@ -18,7 +18,6 @@ namespace Dashboard.Repository
 
         public ResponseDto<Account> login(string email, string password)
         {
-            // Check mail with password
             var account = c.Accounts.Where(x => (x.Email.Equals(email)) && x.Password.Equals(password)).FirstOrDefault();
 
             if (account is null)

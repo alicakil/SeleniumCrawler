@@ -41,11 +41,6 @@ builder.Services.AddHangfire(x =>
         InvisibilityTimeout = TimeSpan.FromMinutes(1)
     })
     .UseRecommendedSerializerSettings();
-
-    // Adding Jobs
-    //RecurringJob.AddOrUpdate<EmailService>(e => e.MailNotifications(), Cron.Hourly, null, "email");
-    //BackgroundJob.Enqueue<EmailService>(e => e.MailNotifications(), Cron.Hourly);
-    //BackgroundJob.Schedule<EmailService>(e => e.MailNotifications(), Cron.Hourly);
 });
 
 
@@ -79,10 +74,9 @@ app.UseHangfireDashboard("/hangfire", new DashboardOptions
     Authorization = new[] { new HangfireAuthenticationFilter() }
 });
 
-// Hergun saat 11, 14, 16, 18, 19, 20, 21 de calistir. Gunde 7 Kez
-//RecurringJob.AddOrUpdate<Job>(j => j.ExecuteJob(null), "0 0 11,14,16,18-21 * * *"); 
 
-
+// Register Hangfire Job, so that, crawling can be repeated based on recurrence...
+RecurringJob.AddOrUpdate<HangfireService>(j => j.ExecuteJob(), "0 0 11,14,16,18-21 * * *"); 
 
 app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Login}/{id?}");
 

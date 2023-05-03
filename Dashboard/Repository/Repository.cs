@@ -130,7 +130,10 @@ namespace Dashboard.Repository
             {
                 PageNo = pageNo,
                 NrOfRecs = dbset.Count(),
-                pageData = dbset.Skip((pageNo - 1) * AppConstants.AppInfo.MaxRecsPerPage).Take(AppConstants.AppInfo.MaxRecsPerPage).AsNoTracking().ToList()
+                pageData = dbset.Skip((pageNo - 1) * AppConstants.AppInfo.MaxRecsPerPage)
+                .Take(AppConstants.AppInfo.MaxRecsPerPage)
+                .AsNoTracking()
+                .ToList()
             };
         }
 

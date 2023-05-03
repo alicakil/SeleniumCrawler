@@ -21,7 +21,7 @@ namespace Dashboard.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-            optionsBuilder.UseNpgsql(AppConstants.Db.ConnectionString);
+            optionsBuilder.UseNpgsql(AppConstants.Db.ConnectionString); // skipping DI
         }
 
         public DbSet<Account> Accounts { get; set; }

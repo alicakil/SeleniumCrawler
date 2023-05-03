@@ -9,6 +9,11 @@ using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace Dashboard.Services.Crawlers
 {
+
+    /// <summary>
+    /// Instagram crawler, Note that this class might not for for the future 
+    /// due to changes on the target web site (instagram) front-end code. Must be kept up-to-date if broken.
+    /// </summary>
     public class Instagram : ICrawler
     {
         private Selenium selenium;

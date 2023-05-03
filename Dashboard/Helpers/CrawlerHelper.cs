@@ -22,9 +22,9 @@ namespace Dashboard.Helpers
         {
             try
             {
-                // Initialize ---
+                // Initialize --- (skipping DI)
                 Print("\nSelenium is Initializing...");
-                Context c = new Context();
+                Context c = new Context(); 
                 CurrentUser currentUser = new CurrentUser();
                 currentUser.Id = 4;
                 currentUser.Name = "Crawler";

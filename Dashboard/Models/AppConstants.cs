@@ -23,6 +23,7 @@ namespace Dashboard.Models
 
         public static class Db
         {
+            // Modify for your db server..
             public const string ConnectionString = "Server=localhost;Port=5432;Database=selenium_crawler_demo;User Id=postgres;Password=13;";
         }
 
@@ -39,7 +40,7 @@ namespace Dashboard.Models
         {
             public static Version VersionInfo { get; } = new Version(1,0);
             public static string Name { get; } = "Selenium Crawler App";
-            public static string Description { get; } = "This is a demo app to show how to use selenium driver to crawl web sites";
+            public static string Description { get; } = "This is a demo app to show how to use selenium driver to crawl websites";
             public static string Author { get; } = "Ali CAKIL";
             public static bool IsDevelopment { get; set; } = true;
             public static int MaxRecsPerPage { get; set; } = 12;
