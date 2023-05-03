@@ -22,3 +22,7 @@ To remove last migration; (dont forget to update database before this (will run 
 - Webb app to be updated 
 - hangfire to be prepared 
 - screen-shot to be added to read me refactor readme (getting started, run, purpose of app etc.)
+
+# UI looks like
+![Github Sampe 1](Dashboard/wwwroot/github/github-sampe-1.png)
+![Github Sampe 2](Dashboard/wwwroot/github/github-sampe-2.png)
