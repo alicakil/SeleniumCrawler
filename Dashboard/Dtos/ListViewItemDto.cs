@@ -1,5 +1,4 @@
-﻿
-namespace core.Dtos
+﻿namespace core.Dtos
 {
     public record ListViewItemDto
     {
@@ -13,7 +12,5 @@ namespace core.Dtos
         public string Keywords { get; init; }
         public string PriceInfo { get; init; }
         public string isRegistered { get; init; }
-
-
     }
 }

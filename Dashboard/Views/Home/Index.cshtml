@@ -3,15 +3,96 @@
 @model ListViewDto;
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "~/Views/MainLayoult.cshtml";
+}
 
 
-<h1> Selenium Crawler Demo App </h1>
+<style>
 
 
-<h4> 
-    <a href="../hangfire"> Hangfire Dashboard </a>     
-</h4>
 
+    .parent-cart {
+        border-radius: 17px;
+        padding: 11px;
+    }
+
+    .child-cart {
+        position: relative;
+        height: 300px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 17px;
+        box-shadow: 3px 3px 10px #888888;
+        font-size: large;
+        background-position: center;
+        background-size: 150%;
+        transition: background-size 0.5s;
+        background-image: linear-gradient(transparent, transparent, black), url('https://i2.milimaj.com/i/milliyet/75/0x0/6059c1cf55427e11044c709c.jpg');
+    }
+
+
+
+
+        .child-cart:hover {
+            background-size: 200%;
+            background-image: linear-gradient(transparent, transparent, black), url('https://i2.milimaj.com/i/milliyet/75/0x0/6059c1cf55427e11044c709c.jpg');
+            cursor: pointer;
+        }
+
+
+    .cart-info1 {
+        display: block;
+        font-size: large;
+        margin-top: 220px;
+        margin-bottom: 0px;
+    }
+
+    .cart-info2 {
+        display: block;
+        font-size: medium;
+        margin-bottom: 10px;
+    }
+
+    .cart-date {
+        display: inline-block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        padding: 3px;
+        padding-right: 9px;
+        padding-left: 9px;
+        border-radius: 7px;
+        font-size: large;
+        text-align: center;
+        background-color: rgba(50,50,50, 0.8);
+    }
+
+    .date-part1 {
+        margin: 0px;
+        padding: 0px;
+        margin-bottom: -7px;
+        font-size: x-large;
+    }
+
+    .date-part2 {
+        margin: 0px;
+        padding: 0px;
+        font-size: medium;
+        margin-bottom: -3px;
+    }
+
+    .date-part3 {
+        margin: 0px;
+        padding: 0px;
+        font-size: medium;
+    }
+
+
+</style>
+
+<h1> Crawled Instagram Stories </h1>
 
 
 
@@ -19,15 +100,12 @@
 <div class="container">
     <div class="row">
 
-      
     @if (Model.PageData.Count == 0)
         @Html.Raw("<div class='col-12'><h2 style='text-align:center;margin-top:70px;'>No Event Found</h2></div>")
 
-
-
-            @foreach (var x in Model.PageData)
+        @foreach (var x in Model.PageData)
         {
-            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 parent-cart" onclick="window.open('/Event/EventDetails/@x.Id')">
+            <div class="col-xl-3 col-lg-4 col-sm-6 col-12 parent-cart">
 
                 <div class="child-cart @x.isRegistered" style=" background-image: linear-gradient(transparent, transparent, black), url('@x.CoverPhotoURL');">
                     <div class="cart-date">

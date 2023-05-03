@@ -19,11 +19,7 @@ namespace Dashboard.Controllers
         {
             u = new UnitOfWork(new Context(), userService.GetCurrentUser());
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
-
+  
         [AllowAnonymous]
         public IActionResult Login()
         {
@@ -41,7 +37,7 @@ namespace Dashboard.Controllers
                 return Redirect("/home/login");
             }
 
-            // Add user info who Authenticated
+            // Add user info for who Authenticated
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, loginResponse.Payload.Id.ToString()),
@@ -57,7 +53,15 @@ namespace Dashboard.Controllers
         }
 
 
-        void GetStories()
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            //mRemove Authentication
+            await HttpContext.SignOutAsync();
+            return Redirect("/home/login");
+        }
+
+        public IActionResult Index()
         {
             var stories = u.storyRepository.GetAll();
             var listViewDto = new ListViewDto();
@@ -68,14 +72,15 @@ namespace Dashboard.Controllers
             {
                 Id = e.Id,
                 Title = e.Title,
-                CoverPhotoURL = AppConstants.AWS.ImgRoot + S3.Folder_Dir_StoryImage + e.CoverPhotoURL,
+                CoverPhotoURL = e.CoverPhotoURL.Contains("http") ? e.CoverPhotoURL : AppConstants.AWS.ImgRoot + S3.Folder_Dir_StoryImage + e.CoverPhotoURL,
                 AspectRatio = e.CoverPhotoAspectRatio is null ? 0 : (double)e.CoverPhotoAspectRatio,
                 CreatedAt = DateHumanReadable(e.CreatedAt),
-                Keywords  = string.Join(',', e.Keywords.ToList())
+                LocationInfo = e.Address,
+                Keywords = string.Join(',', e.Keywords.ToList())
             }).ToList();
 
+            return View(listViewDto);
         }
-
 
         string DateHumanReadable(DateTime d)
         {
@@ -87,12 +92,20 @@ namespace Dashboard.Controllers
             {
                 return "yesterday";
             }
+            else if (d.Date == DateTime.UtcNow.AddDays(1))
+            {
+                return "tomorrow";
+            }
             else
             {
                 string day = d.Day.ToString();
                 string month = d.ToString("MMM");
                 string year = d.Year.ToString();
-                return $"<p class='date-part1'>{day}</p> <p class='date-part2'>{month}</p> <p class='date-part3'>{year}</p>";
+
+                return $@"
+                    <p class='date-part1'>{day}</p> 
+                    <p class='date-part2'>{month}</p> 
+                    <p class='date-part3'>{year}</p>";
             }
         }
     }

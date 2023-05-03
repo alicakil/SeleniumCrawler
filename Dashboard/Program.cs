@@ -53,8 +53,8 @@ builder.Services.AddHangfire(x =>
 builder.Services.AddHangfireServer(ops =>
 {
 
-    ops.ServerName = "Finddance.party Web Job Server";
-    ops.WorkerCount = 5;
+    ops.ServerName = "Standard Web Job Server";
+    ops.WorkerCount = 10;
     ops.SchedulePollingInterval = TimeSpan.FromSeconds(20);
     ops.CancellationCheckInterval = TimeSpan.FromSeconds(20);
     ops.Queues = new string[] { "email" };
@@ -65,15 +65,7 @@ builder.Services.AddHangfireServer(ops =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-
 AppConstants.AppInfo.IsDevelopment = app.Environment.IsDevelopment();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -91,8 +83,7 @@ app.UseHangfireDashboard("/hangfire", new DashboardOptions
 //RecurringJob.AddOrUpdate<Job>(j => j.ExecuteJob(null), "0 0 11,14,16,18-21 * * *"); 
 
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Login}/{id?}");
 
 app.Run();

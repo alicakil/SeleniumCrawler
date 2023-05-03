@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Principal;
 using System;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Dashboard.Models
 {
@@ -43,38 +44,7 @@ namespace Dashboard.Models
             public static bool IsDevelopment { get; set; } = true;
             public static int MaxRecsPerPage { get; set; } = 12;
 
-
-            public static void CreateDatabase()
-            {
-                Context c = new Context();
-
-                // Check db if exists
-                if ((c.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
-                {
-                    c.Database.EnsureDeleted();
-                }
-
-                if (!(c.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
-                {
-                    c.Database.EnsureCreated();
-                }
-
-                if (c.Accounts.Any()) // means we already initialized db before for the demo
-                    return;
-
-                try
-                {
-                    // Some Demo data to create...
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-
-
         }
-
     }
 
 

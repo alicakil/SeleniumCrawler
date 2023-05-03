@@ -1,4 +1,7 @@
-@using Dashboard.Models;
+@using Dashboard.Models
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Http
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +9,7 @@
 	<title> Selenium Crawer </title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
 	<meta name="keywords" content="Selenium Crawer Demo">
-	<meta name="author" content=="Ali CAKIL">
+	<meta name="author" content="Ali CAKIL">
 	<meta name="description" content="Selenium Crawer Demo Application">
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -39,8 +42,6 @@
 			text-align: center;
 		}
 
-
-
         .me {
             min-height: 360px;
             font-size: large;
@@ -68,12 +69,17 @@
 		   .my-title { font-size: 31px; }
         }
 
+		a { color:white; }
 
 	</style>
 </head>
 
 <body>
 
+	@if (User.Identity.IsAuthenticated)
+	{
+		<a href="/home/logout" style="position:absolute; right:10%; top:40px;font-size:x-large;"> logout </a>
+	}
 
 	<div class="container">
 		<div class="row">
@@ -93,9 +99,12 @@
 		</div>
     </div>
 
+	<br>
+	<a href="https://alicakil.com" style="margin-top:175px !important; padding:7px;" target="_blank"> alicakil.com </a> |
+	<a href="../hangfire" style="margin-top:175px !important;  padding:7px;" target="_blank"> Hangfire Dashboard  </a>
+	<br><br>
 
-
-<script>
+	<script>
 
 
 </script>

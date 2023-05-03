@@ -46,7 +46,7 @@ namespace Dashboard.Repository
         {
             if (dbset.Any())
             {
-                return dbset.ToList();
+                return dbset.AsNoTracking().AsSplitQuery().ToList();
             }
             else
             {
